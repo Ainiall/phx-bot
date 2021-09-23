@@ -4,12 +4,12 @@
   "description": "phx discord bot",
   "main": "index.js",
   "scripts": {
-    "start": "npm i discord.js && npm update && node index.js",
+    "start": "npm i discord.js && npm update && node deploy-commands.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {  
-    "node": "16.9.1"  
-  , "npm": "7.24.0"
+  "engines": {
+    "node": "16.9.1",
+    "npm": "7.24.0"
   },
   "author": "Ainiall",
   "license": "ISC",
@@ -18,6 +18,7 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.23.1",
     "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "fs": "^0.0.1-security"
   }
 }

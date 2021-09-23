@@ -1,7 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const { r4 } = require('../config.json');
-const { news } = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,17 +9,16 @@ module.exports = {
 		.addStringOption(option => option.setName('date').setDescription('Date (yyyy/mm/dd)').setRequired(true))
 		.addStringOption(option => option.setName('time').setDescription('UTC time 24h format (hh:mm)').setRequired(true)),
 	async execute(interaction, client) {
-		if (!interaction.member.roles.cache.has(r4)) return; //only r4
+		if (!interaction.member.roles.cache.has(process.env.R4)) return; //only r4
 
-		await interaction.reply('@everyone Portal event schedualed! Check <#'+news+'> to see more info about it');
+		await interaction.reply('@everyone Portal event schedualed! Check <#'+
+			process.env.NEWS+'> to see more info about it');
 		
 		const description = await interaction.options.getString('description');
 		const date = await interaction.options.getString('date');
 		const dateNumber = date.replaceAll('/','');
 		const time = await interaction.options.getString('time');
 		const timeNumber = time.replace(':','');
-		const accepted = {};
-		const declined = {};
 
 		const calendar = 'https://calendar.google.com/calendar/u/0/r/eventedit?dates='+dateNumber
 			+'T'+time+'00Z/'+dateNumber+'T'+timeNumber+'00Z&text=PORTAL-KoA&ctz=UTC&sf=true';
@@ -43,7 +40,7 @@ module.exports = {
 		.setTimestamp()
 		.setFooter('PHX R4 STAFF');
 		
-		const msg = await client.channels.cache.get(news).send({ embeds: [portalEmbed] });
+		const msg = await client.channels.cache.get(process.env.news).send({ embeds: [portalEmbed] });
 		msg.react('✅').then(() => msg.react('❌'));
 		
 	},

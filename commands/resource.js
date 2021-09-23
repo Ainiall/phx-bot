@@ -1,16 +1,15 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const { r4 } = require('../config.json');
-const { news } = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('resource')
 		.setDescription('Next resource building poll'),
 	async execute(interaction,client) {
-		if (!interaction.member.roles.cache.has(r4)) return; //only r4
+		if (!interaction.member.roles.cache.has(process.env.R4)) return; //only r4
 
-		await interaction.reply('@everyone Alliance resource poll available! Check <#'+news+'> to vote');
+		await interaction.reply('@everyone Alliance resource poll available! Check <#'+
+			process.env.NEWS+'> to vote');
 		
 		const resourceEmbed = new MessageEmbed()
 		.setColor('#0099ff')
@@ -27,7 +26,7 @@ module.exports = {
 		.setTimestamp()
 		.setFooter('PHX R4 STAFF');
 		
-		const msg = await client.channels.cache.get(news).send({ embeds: [resourceEmbed] });
+		const msg = await client.channels.cache.get(process.env.NEWS).send({ embeds: [resourceEmbed] });
 		msg.react('🥘').then(() => msg.react('🪵')).then(() => msg.react('⚔️')).then(() => msg.react('🥈'));
 			
 	},

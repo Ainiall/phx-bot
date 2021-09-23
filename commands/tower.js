@@ -1,14 +1,12 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const { r4 } = require('../config.json');
-const { news } = require('../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('tower')
 		.setDescription('News channel alert about one new tower being placed'),
-	async execute(interaction,client) {
-		if (!interaction.member.roles.cache.has(r4)) return; //only r4
+	async execute(interaction) {
+		if (!interaction.member.roles.cache.has(process.env.R4)) return; //only r4
 		
 		const towerEmbed = new MessageEmbed()
 		.setColor('#0099ff')

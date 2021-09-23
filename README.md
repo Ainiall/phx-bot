@@ -4,10 +4,12 @@ Discord bot for PHX alliance management
 ## HOW TO USE
 You should have installed [NodeJS](https://nodejs.org/en/) to be able to build the dependencies using
 ```
-npm i
+$ npm i
 ```
-
-You can add the bot to your own server using [this guide](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#creating-and-using-your-invite-link)
+Then you can run the bot locally using
+```
+$ npm start
+```
 
 ## LIST OF COMMANDS
  - /utc -> shows current UTC time

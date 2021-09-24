@@ -7,8 +7,7 @@ module.exports = {
 		.setName('tower')
 		.setDescription('News channel alert about one new tower being placed'),
 	async execute(interaction) {
-		if (!interaction.member.roles.cache.has(process.env.R4)) return; //only r4
-		
+
 		const towerEmbed = new MessageEmbed()
 		.setColor('#0099ff')
 		.setTitle('ALLIANCE TOWER')
